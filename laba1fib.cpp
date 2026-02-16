@@ -10,14 +10,14 @@ int main() {
     while (1) {
         printf("\n");
         printf("Выберите задание:\n");
-        printf("1 — Вычисление f(x) = sin(x)/x на (0, 4]\n");
+        printf("1 — Вычисление f(x) = sin(x)/x на (a, 4]\n");
         printf("2 — Сумма N чисел Фибоначчи до MAX\n");
         printf("3 — Кредитные платежи\n");
         printf("0 — Выход\n");
         printf("Введите номер: ");
         scanf("%d", &choice);
 
-        // Очистка буфера ввода (чтобы getchar() работал корректно)
+        // Очистка буфера ввода
         while (getchar() != '\n');
 
         if (choice == 0) {
@@ -27,16 +27,30 @@ int main() {
 
         if (choice == 1) {
             printf("\n--- Задание II.1: f(x) = sin(x)/x ---\n");
-            printf("x\t\tf(x)\n");
-            printf("--------------------------\n");
+            double a;
+            printf("Введите начальную точку интервала (a): ");
+            scanf("%lf", &a);
 
-            double a = 0.0, b = 4.0;
-            double h = (b - a) / 10.0;
+            if (a >= 4.0) {
+                printf("Ошибка: начальная точка должна быть меньше 4.\n");
+            }
+            else {
+                double b = 4.0;
+                double h = (b - a) / 10.0;
 
-            for (int i = 1; i <= 10; ++i) {
-                double x = a + i * h;
-                double fx = sin(x) / x;
-                printf("%.2f\t\t%.6f\n", x, fx);
+                printf("x\t\tf(x)\n");
+                printf("--------------------------\n");
+
+                for (int i = 1; i <= 10; ++i) {
+                    double x = a + i * h;  // первая точка — a + h, последняя — 4.0
+                    if (x == 0.0) {
+                        printf("%.2f\t\tнедопустимо (деление на 0)\n", x);
+                    }
+                    else {
+                        double fx = sin(x) / x;
+                        printf("%.2f\t\t%.6f\n", x, fx);
+                    }
+                }
             }
         }
         else if (choice == 2) {
@@ -125,9 +139,8 @@ int main() {
             printf("Неверный выбор. Попробуйте снова.\n");
         }
 
-        // Пауза перед возвратом в меню
         printf("\nНажмите Enter для возврата в меню...");
-        getchar(); // Ждём нажатия Enter
+        getchar();
     }
 
     return 0;
