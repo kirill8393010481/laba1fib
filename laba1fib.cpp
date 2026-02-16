@@ -3,7 +3,7 @@
 #include <math.h>
 #include <locale.h>
 
-int main() {
+int main() {                                              
     setlocale(LC_ALL, "Russian");
 
     int choice;
@@ -41,8 +41,8 @@ int main() {
                 printf("x\t\tf(x)\n");
                 printf("--------------------------\n");
 
-                for (int i = 1; i <= 10; ++i) {
-                    double x = a + i * h;  // первая точка — a + h, последняя — 4.0
+                for (int i = 1; i <= 10; ++i) {                                                         //целое число
+                    double x = a + i * h;  // первая точка — a + h, последняя — 4.0                     // для дробных чисел 
                     if (x == 0.0) {
                         printf("%.2f\t\tнедопустимо (деление на 0)\n", x);
                     }
@@ -55,7 +55,7 @@ int main() {
         }
         else if (choice == 2) {
             printf("\n--- Задание II.2: Числа Фибоначчи ---\n");
-            long long MAX;
+            long long MAX;                                                                              //очень большое целое число
             printf("Введите MAX: ");
             scanf("%lld", &MAX);
 
